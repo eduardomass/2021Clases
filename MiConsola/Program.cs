@@ -1,6 +1,8 @@
 ﻿using MiConsola.MisClases;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MiConsola
 {
@@ -8,104 +10,84 @@ namespace MiConsola
     {
         static void Main(string[] args)
         {
-            string a = "HOLA";
-            string b = "hola";
-            if (a == b)
-                Console.WriteLine("son iguales");
-            else
-                Console.WriteLine("no son");
 
-
-            if (string.Equals(a, b, StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("son iguales");
-            else
-                Console.WriteLine("no son");
-
-            if (a.ToUpper().Equals(b.ToUpper()))
-                Console.WriteLine("son iguales");
-            else
-                Console.WriteLine("no son");
-
-            Console.ReadKey();
-            return;
-            //ArrayList listaNombres = new ArrayList();
-            //string nombre;
-            //do
-            //{
-            //    Console.Write("Decime tu nombre : ");
-            //    nombre = Console.ReadLine();
-            //    if (!nombre.Equals(""))
-            //    {
-            //        listaNombres.Add(nombre);
-            //    }
-            //} while (!nombre.Equals(""));
-
-            //foreach (string item in listaNombres)
-            //{
-            //    foreach (var letra in item.ToCharArray())
-            //    {
-            //        Console.WriteLine(letra);
-            //    }
-            //    Console.WriteLine(item);
-            //}
-            //Dado dado1 = new Dado();
-            //Dado dado2 = new Dado();
-            //Dado dado3 = new Dado(3);
-
-            //dado1.Tirar();
-            //dado2.Tirar();
-            //dado3.Tirar();
-
-            //bool a = dado1.Numero == dado2.Numero;
-            do
-            {
-
-
+            //var forma =  FormasFactory.ConstruirForma();
+            //forma.CalcularSuperficie();
             
-            Partida partida1 = new Partida();
-            partida1.ComenzarPartida(7);
-            if (partida1.Perdi())
+            List<Forma> listaFormas = new List<Forma>();
+            for (int i = 1; i <= 101; i++)
             {
-                Console.WriteLine("Perdiste");
+                listaFormas.Add(FormasFactory.Recepcionar( i, Forma.TipoForma.Cuadrado) );
             }
-            else
+            
+            
+            int q = 0;
+            bool hayMayoraA100 = false;
+            foreach (var forma in listaFormas)
             {
-                Console.WriteLine("Ganaste");
+                if (forma.Lado <= 10)
+                    q++;
+                if (forma.Lado > 100)
+                    hayMayoraA100 = true;
             }
 
-            } while (Console.ReadLine() == "");
-            Console.WriteLine("Presione cualquier tecla para salir");
+            var listaSoloLosMenorsA10 = listaFormas
+                .Where(edu => edu.Lado <= 10 && edu.Id <= 1000)
+                ;
+            var existeMayorA100 = listaFormas.Any(item => item.Lado > 100);
+            List<int> listaEnteros = new List<int>();
+            var suma = listaFormas.Sum(o=>o.Lado);
+            listaEnteros.Sum();
+            Console.WriteLine($"Cantidad de Cuadrados {q}");
+            q = 0;
+            foreach (var forma in listaFormas)
+            {
+                if (forma.Lado <= 30 && forma.Lado > 10)
+                    q++;
+            }
+
+            int numero = 8;
+
+            numero.EsPar();
+
+            bool esPar = (numero % 2 == 0);
+
+            Console.WriteLine($"Cantidad de Cuadrados {q}");
             Console.ReadKey();
+
+            //try
+            //{
+
+            //    Operacion suma = Operacion.CrearOperacion("+");
+            //    suma.Numero1 = 10;
+            //    suma.Numero2 = 20;
+
+            //    Operacion resta = Operacion.CrearOperacion("-");
+            //    resta.Numero1 = 10;
+            //    resta.Numero2 = 20;
+
+
+            //    Operacion estoEsUnaOperacion = new Resta();
+            //    estoEsUnaOperacion.Numero2 = 20;
+            //    estoEsUnaOperacion.Numero1 = 10;
+                
+            //    //((Suma)estoEsUnaOperacion).Saludar();
+
+
+
+
+            //    Console.WriteLine(suma.Calcular());
+            //    Console.WriteLine(resta.Calcular());
+            //    Console.WriteLine(estoEsUnaOperacion.Calcular());
+            //    Console.ReadKey();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    Console.ReadKey();
+            //}
         }
     }
 }
 
-
-
-//Console.Write("Decime tu nombre : ");
-//string nombre = Console.ReadLine();
-//while (nombre != "")
-//{
-//    Console.WriteLine("Tu nombre es : " + nombre);
-//    Console.Write("Decime tu nombre : ");
-//    nombre = Console.ReadLine();
-//}
-//for (; true;)
-//{
-//    Console.Write("Decime tu nombre : ");
-//    string nombre = Console.ReadLine();
-//    if (nombre.Equals(""))
-//        break;
-//    Console.WriteLine("Tu nombre es : " + nombre);
-
-//}
-//string nombre;
-//do
-//{
-//    Console.Write("Decime tu nombre : ");
-//    nombre = Console.ReadLine();
-//    if (!nombre.Equals(""))
-//    {
-//        Console.WriteLine("Tu nombre es : " + nombre);
-//    }
-//} while (!nombre.Equals(""));
